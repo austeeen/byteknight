@@ -1,7 +1,7 @@
-# smoke
+# ByteKnight
 
-Project Smoke, or the "SmokeEngine", is a new project that hopes to produce a series of simple and
-useful modules for building 2D games. It is designed to work alongside SFML 2.5.
+Project ByteKnight, is a new project that hopes to produce a series of simple and useful modules for
+ building 2D games. It is designed to work alongside SFML 2.5.
 
 ## modules
 
