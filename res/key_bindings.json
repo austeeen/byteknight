@@ -1,0 +1,46 @@
+[
+  {
+  "key": "p",
+  "button": "ST"
+  },
+  {
+    "key": "ESCAPE",
+    "button": "SL"
+  },
+  {
+    "key": "RETURN",
+    "button": "A"
+  },
+  {
+    "key": "q",
+    "button": "B"
+  },
+  {
+    "key": "x",
+    "button": "X"
+  },
+  {
+    "key": "z",
+    "button": "Y"
+  },
+  {
+    "key": "UP"
+  },
+  {
+    "key": "DOWN"
+  },
+  {
+    "key": "LEFT"
+  },
+  {
+    "key": "RIGHT"
+  },
+  {
+    "key": "t",
+    "button": "R"
+  },
+  {
+    "key": "r",
+    "button": "L"
+  }
+]

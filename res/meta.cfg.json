@@ -1,0 +1,30 @@
+{
+  "window_name": "Square Battle",
+  "window_icon": "res/icon.png",
+  "resource_paths": {
+    "font": "res/square_font.ttf",
+    "scn": {
+      "basic_game": "res/scenes/basic_game.scn.json",
+      "pause_menu": "res/scenes/pause_menu.scn.json"
+    },
+    "tbl": {
+      "scene_groups": "res/scenes/scene_groups.tbl.json",
+      "game_objects": "res/game_objects/game_objects.tbl.json",
+      "widgets": "res/gui/widgets.tbl.json"
+    },
+    "img": {
+      "game_objects": {
+        "img_fp": "res/game_objects/game_objects.png",
+        "img_cols": 0
+      },
+      "pause_menu": {
+        "img_fp": "res/scenes/pause_menu.png",
+        "img_cols": 0
+      },
+      "game_board": {
+        "img_fp": "res/scenes/game_board.png",
+        "img_cols": 10
+      }
+    }
+  }
+}

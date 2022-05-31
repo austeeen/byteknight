@@ -1,7 +1,6 @@
 # byteknight specific files
 *.log
 build/
-res/
 
 # liscensed sprites that i can't upload to other websites :/
 res/elthen

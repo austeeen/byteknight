@@ -1,0 +1,95 @@
+{
+  "name": "basic_game",
+  "type": "instance",
+  "board_size": "0,0,10,10",
+  "tile_size": "0,0,32,32",
+  "pxl_size": "0,0,320,320",
+  "layers": [
+    {
+      "name": "backdrop_layer",
+      "type": "backdrop_layer",
+      "gid_str": "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1",
+      "img_src": "game_board",
+      "lyr_cols": 10,
+      "render_order": 0
+    },
+    {
+      "name": "tile_layer",
+      "type": "tile_layer",
+      "lyr_cols": 10,
+      "render_order": 1
+    },
+    {
+      "name": "game_objects",
+      "type": "object_layer",
+      "render_order": 2,
+      "lyr_cols": 10,
+      "objects": [
+        {
+          "id": 7,
+          "name": "red_cursor",
+          "type": "cursor",
+          "class": "hand",
+          "group": "red_team",
+          "start_coord": "4,0"
+        },
+        {
+          "id": 1,
+          "name": "red_warrior",
+          "type": "game_piece",
+          "class": "warrior",
+          "group": "red_team",
+          "start_coord": "2,2"
+        },
+        {
+          "id": 2,
+          "name": "red_rogue",
+          "type": "game_piece",
+          "class": "rogue",
+          "group": "red_team",
+          "start_coord": "5,2"
+        },
+        {
+          "id": 3,
+          "name": "red_mage",
+          "type": "game_piece",
+          "class": "mage",
+          "group": "red_team",
+          "start_coord": "8,2"
+        },
+        {
+          "id": 8,
+          "name": "blue_cursor",
+          "type": "cursor",
+          "class": "hand",
+          "group": "blue_team",
+          "start_coord": "4,8"
+        },
+        {
+          "id": 4,
+          "name": "blue_warrior",
+          "type": "game_piece",
+          "class": "warrior",
+          "group": "blue_team",
+          "start_coord": "2,3"
+        },
+        {
+          "id": 5,
+          "name": "blue_rogue",
+          "type": "game_piece",
+          "class": "rogue",
+          "group": "blue_team",
+          "start_coord": "6,3"
+        },
+        {
+          "id": 6,
+          "name": "blue_mage",
+          "type": "game_piece",
+          "class": "mage",
+          "group": "blue_team",
+          "start_coord": "7,4"
+        }
+      ]
+    }
+  ]
+}

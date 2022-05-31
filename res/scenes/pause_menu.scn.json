@@ -1,0 +1,50 @@
+{
+  "name": "pause_menu",
+  "type": "menu",
+  "widgets": [
+    {
+      "name": "canvas_0",
+      "type": "canvas",
+      "render": 0,
+      "img_src": "pause_menu",
+      "anchor": "CENTER",
+      "inputs": {
+        "B": "POP_MENU_RESTORE",
+        "ST": "POP_MENU_RESTORE"
+      }
+    },
+    {
+      "name": "cursor_0",
+      "type": "cursor",
+      "render": 1,
+      "animation": {
+        "type": "bounce",
+        "horizontal": true
+      }
+    },
+    {
+      "name": "button_0",
+      "type": "button",
+      "action": "POP_MENU_RESTORE",
+      "position_rect": "23,50,72,24"
+    },
+    {
+      "name": "button_1",
+      "type": "button",
+      "action": "OPEN_OPTIONS",
+      "position_rect": "23,81,72,24"
+    },
+    {
+      "name": "button_2",
+      "type": "button",
+      "action": "EXIT_GAME",
+      "position_rect": "19,112,80,24"
+    },
+    {
+      "name": "button_3",
+      "type": "button",
+      "action": "EXIT_MAIN_MENU",
+      "position_rect": "19,143,80,24"
+    }
+  ]
+}

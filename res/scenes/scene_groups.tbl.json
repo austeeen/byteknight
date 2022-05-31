@@ -1,0 +1,5 @@
+{
+  "test": {
+    "scenes": ["basic_game", "pause_menu"]
+  }
+}

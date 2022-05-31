@@ -1,0 +1,10 @@
+{
+  "type": {
+    "cursor": {
+      "img_src": "game_objects",
+      "center_offset": "0,2",
+      "texture_rect": "96,0,12,10",
+      "flip_sprite": true
+    }
+  }
+}
