@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+errcheck() {
+    if [[ $1 -ne 0 ]]; then
+        exit 1
+    fi
+}
+
+usage () {
+    echo "run [opts]* [app name]"
+    echo "  build opts"
+    echo "    b - build regularly"
+    echo "    c - clean target and build"
+    echo "  run opts"
+    echo "    r - run executable"
+    echo "    g - use gdb"
+    echo "    v - use valgrind"
+    echo "    p - profile with valgrind"
+    echo "  help"
+    echo "    h - display help"
+}
+
+if [[ $# -eq 0 ]]; then
+    echo "at least one option required."
+    exit 1
+elif [[ $# -eq 1 ]]; then
+    app="byteknight"
+elif [[ $# -eq 2 ]]; then
+    app=$2
+elif [[ $# -gt 2 ]]; then
+    echo "excess args [${@:3}] will be ignored..."
+fi
+
+base_cmd="./build/$app.app"
+run_cmd=""
+cmake_clean=""
+
+do_build="false"
+do_run="false"
+
+build () {
+    echo "building '$app'"
+    mkdir -p build && cd build
+    errcheck $?
+    cmake -DAPP_NAME=$app ..
+    errcheck $?
+    cmake --build . $cmake_clean
+    errcheck $?
+    cd ..
+}
+
+
+args=($(echo $1 | grep -o .))
+for c in "${args[@]}"; do
+    case $c in
+        b)
+            do_build="true";;
+        c)
+            do_build="true"
+            cmake_clean="--clean-first";;
+        g)
+            run_cmd="gdb $base_cmd"
+            do_run="true";;
+        r)
+            do_run="true"
+            run_cmd="$base_cmd";;
+        v)
+            run_cmd="valgrind --track-origins=yes --leak-check=yes --log-file='valgrind.log' $base_cmd"
+            do_run="true";;
+        p)
+            run_cmd="valgrind --tool=callgrind $base_cmd"
+            do_run="true";;
+        h)
+            usage;;
+        *)
+            echo "bad arg: $c";;
+  esac
+done
+
+shift;
+
+if [[ $do_build == "true" ]]; then
+    build
+fi
+
+if [[ $do_run == "true" ]]; then
+    eval "$run_cmd $@"
+fi
