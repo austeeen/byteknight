@@ -3,7 +3,7 @@
 
 #include "widget.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 class Cursor: public EventfulWidget, public UpdatedWidget, public RenderedWidget
@@ -18,7 +18,7 @@ public:
     void render(sf::RenderTexture& surface) override;
     void updatePosition() override;
 
-    void setTarget(SQ::dir4 dir);
+    void setTarget(dir4 dir);
 
 private:
     void __setUpTargets();

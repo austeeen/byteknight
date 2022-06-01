@@ -6,6 +6,8 @@
 #include "io/controller.hpp"
 #include "factory/asset_factory.hpp"
 
+namespace bt
+{
 class GameContext
 {
 public:
@@ -30,5 +32,6 @@ private:
     sf::RenderWindow m_window;
     Controller* ctlr;
 };
+}
 
 #endif // CTX_GAME_CONTEXT_HPP

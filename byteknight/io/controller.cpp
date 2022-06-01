@@ -1,5 +1,7 @@
 #include "controller.hpp"
 
+namespace bt
+{
 Controller::Controller(): node("controller")
 {
     node.createChannel("gui_channel");
@@ -7,13 +9,13 @@ Controller::Controller(): node("controller")
 }
 Controller::~Controller()
 {
-    SQ::destroy(input_device);
+    destroy(input_device);
 }
 void Controller::setUp()
 {
     std::vector<int> cons;
     if (joy::connected_joys(cons)) {
-        SQ::msg("Controller::setUp", "%d connected controller(s)", (int) cons.size());
+        msg("Controller::setUp", "%d connected controller(s)", (int) cons.size());
         input_device = new Joystick(cons);
     }
     else {
@@ -42,4 +44,5 @@ void Controller::emitInputState()
 void Controller::switchNodeChannel(const std::string& chn_name)
 {
     this->node.setChannel(chn_name);
+}
 }

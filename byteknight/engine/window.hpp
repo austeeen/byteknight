@@ -1,13 +1,15 @@
-#ifndef SQR_WINDOW_HPP
-#define SQR_WINDOW_HPP
+#ifndef BYTE_WINDOW_HPP
+#define BYTE_WINDOW_HPP
 
 #include <SFML/Graphics.hpp>
 
-class SqrWindow
+namespace bt
+{
+class ByteWindow
 {
 public:
-    SqrWindow();
-    SqrWindow(const sf::Vector2u size, const std::string title);
+    ByteWindow();
+    ByteWindow(const sf::Vector2u size, const std::string title);
 
     bool poll(sf::Event& e);
     void close();
@@ -28,5 +30,5 @@ private:
     void __setIntrinsics();
     sf::RenderWindow __window;
 };
-
-#endif // SQR_WINDOW_HPP
+}
+#endif // BYTE_WINDOW_HPP

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <chrono>
 
+namespace bt
+{
 typedef std::chrono::time_point<std::chrono::steady_clock> time_val;
 typedef std::chrono::duration<double> dur;
 
@@ -83,5 +85,5 @@ public:
     static int frames_passed;
     static std::string stats_str;
 };
-
+}
 #endif // UTL_BENCHMARK_H

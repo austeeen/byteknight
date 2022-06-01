@@ -3,7 +3,7 @@
 
 #include "widget.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 class SimpleButton: public TargetableWidget

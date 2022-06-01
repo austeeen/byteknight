@@ -3,7 +3,7 @@
 
 #include "common.hpp"
 
-namespace SQ
+namespace bt::gui
 {
     class Font: public sf::Font
     {
@@ -17,7 +17,7 @@ namespace SQ
 
     private:
         void __createText(
-            const std::size_t hash, 
+            const std::size_t hash,
             const std::string& linestr,
             const sf::Color& color,
             const unsigned int maxlinew);

@@ -6,16 +6,19 @@
 #include "context/scene_context.hpp"
 #include "assets/scene_assets.hpp"
 
-namespace gui
+namespace bt
 {
 
-class Widget;
-class TargetableWidget;
-class ReactiveWidget;
-class EventfulWidget;
-class UpdatedWidget;
-class RenderedWidget;
-class Canvas;
+namespace gui
+{
+    class Widget;
+    class TargetableWidget;
+    class ReactiveWidget;
+    class EventfulWidget;
+    class UpdatedWidget;
+    class RenderedWidget;
+    class Canvas;
+}
 
 class Menu: public Scene
 {
@@ -43,17 +46,17 @@ public:
     const sf::Vector2f& getCenter() const;
     template<class WDGT> void add(WDGT* wdgt);
     void createSurface(const sf::Vector2f size);
-    void getTargetables(std::vector<TargetableWidget*>& targets);
+    void getTargetables(std::vector<gui::TargetableWidget*>& targets);
 
 private:
     const MenuAsset* __menu_ast;
-    Canvas* __canvas; // menu must include canvas widget.
-    std::map<Widgets::ID, Widget*> __widgets;
-    std::vector<TargetableWidget*> __targetable_stack;
-    std::vector<ReactiveWidget*> __reactive_stack;
-    std::vector<EventfulWidget*> __event_stack;
-    std::vector<UpdatedWidget*> __update_stack;
-    std::vector<RenderedWidget*> __render_stack;
+    gui::Canvas* __canvas; // menu must include canvas widget.
+    std::map<Widgets::ID, gui::Widget*> __widgets;
+    std::vector<gui::TargetableWidget*> __targetable_stack;
+    std::vector<gui::ReactiveWidget*> __reactive_stack;
+    std::vector<gui::EventfulWidget*> __event_stack;
+    std::vector<gui::UpdatedWidget*> __update_stack;
+    std::vector<gui::RenderedWidget*> __render_stack;
 
 };
 

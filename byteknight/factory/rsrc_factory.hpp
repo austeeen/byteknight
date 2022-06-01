@@ -1,10 +1,13 @@
 #ifndef FACTORY_RSRC_HPP
 #define FACTORY_RSRC_HPP
 
+#include <filesystem>
 #include "common.hpp"
 #include "resources.hpp"
-#include <filesystem>
+#include "gui/font.hpp"
 
+namespace bt
+{
 class ResourceFactory
 {
 public:
@@ -18,7 +21,7 @@ public:
     void getTable(Json::Value &root, const std::string& key);
     void getImage(sf::Texture &img_txtr, const std::string& key);
     void getImage(sf::Texture &img_txtr, int &img_cols, const std::string& key);
-    SQ::Font* getFont();
+    gui::Font* getFont();
 private:
     rsrc* __getRsrc(const std::string& fp);
 
@@ -29,7 +32,7 @@ private:
     std::map<std::string, jsonRsrc> scene_cache;
     std::map<std::string, jsonRsrc> table_cache;
     std::map<std::string, imgRsrc> image_cache;
-    SQ::Font* __font;
+    gui::Font* __font;
 };
-
+}
 #endif // FACTORY_RSRC_HPP

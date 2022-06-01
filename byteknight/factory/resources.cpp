@@ -1,5 +1,8 @@
 #include "resources.hpp"
 
+namespace bt
+{
+
 std::ifstream JsonFileLoader::fs;
 std::string JsonFileLoader::err_str;
 Json::CharReaderBuilder JsonFileLoader::builder;
@@ -7,7 +10,7 @@ bool JsonFileLoader::load(const std::string &fp, Json::Value &root)
 {
     fs.open(fp);
     if (!fs.is_open()) {
-        SQ::err("JsonFileLoader::load", "could not open %s", fp.c_str());
+        err("JsonFileLoader::load", "could not open %s", fp.c_str());
         return false;
     }
     err_str = "";
@@ -32,4 +35,5 @@ bool imgRsrc::load(const std::string &fp)
     if (!img_texture.loadFromFile(fp))
         return false;
     return true;
+}
 }

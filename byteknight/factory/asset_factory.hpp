@@ -5,6 +5,8 @@
 #include "assets/asset_bases.hpp"
 #include "rsrc_factory.hpp"
 
+namespace bt
+{
 class AssetFactory
 {
 public:
@@ -15,13 +17,13 @@ public:
     template <typename T>
     T* get(const std::string& ast_name) {
         if (loaded_assets.count(ast_name) == 0) {
-            SQ::err("AssetFactory::get", "%s not found", ast_name.c_str());
+            err("AssetFactory::get", "%s not found", ast_name.c_str());
             return nullptr;
         }
 
         T* ast = dynamic_cast<T*>(loaded_assets.at(ast_name));
         if (ast == nullptr) {
-            SQ::err("AssetFactory::get", "%s could not be cast to requested type", ast_name.c_str());
+            err("AssetFactory::get", "%s could not be cast to requested type", ast_name.c_str());
         }
         return ast;
     }
@@ -30,5 +32,5 @@ private:
     Json::Value all_groups;
     std::map<const std::string, BaseJsonAsset*> loaded_assets;
 };
-
+}
 #endif // FCT_ASSET_HPP

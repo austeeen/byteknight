@@ -2,13 +2,13 @@
 #define WGT_BASE_HPP
 
 #include "common.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 #include "context/scene_context.hpp"
 #include "assets/gui_assets.hpp"
 #include "scene/menus.hpp"
 #include "events/event_node.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 class Widget
@@ -22,13 +22,13 @@ public:
     virtual void onDeactivate() {};
     virtual void onReset() {};
     virtual void updatePosition();
-    const SQ::rect& getRect() const;
+    const rect& getRect() const;
 
 protected:
     Menu* _menu;
     SceneContext* _scene_context;
     WidgetAsset _ast;
-    SQ::rect _rect;
+    rect _rect;
     sf::Vector2i _padding;
 };
 
@@ -50,9 +50,9 @@ class TargetableWidget: public ReactiveWidget
 public:
     TargetableWidget(const WidgetAsset& wdgt_ast);
     virtual ~TargetableWidget() override;
-    void setNeighbor(SQ::dir4 d, TargetableWidget* t);
-    bool hasNeighbor(SQ::dir4 d);
-    TargetableWidget* getNeighbor(SQ::dir4 d);
+    void setNeighbor(dir4 d, TargetableWidget* t);
+    bool hasNeighbor(dir4 d);
+    TargetableWidget* getNeighbor(dir4 d);
     const std::string& getName() const;
 
 protected:
@@ -92,7 +92,6 @@ public:
 protected:
     sf::Sprite* _sprite;
 };
-
 }
 
 #endif // SCN_MENU_HPP

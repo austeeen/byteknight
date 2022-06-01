@@ -1,8 +1,10 @@
 #include "event_node.hpp"
 
+namespace bt
+{
 Node::Node(const std::string &node_name) : node_name(node_name)
 {
-    SQ::debug("Node", "created %s", node_name.c_str());
+    debug("Node", "created %s", node_name.c_str());
     Network::connectNode(node_name, this);
     eit = events.end();
 }
@@ -26,11 +28,11 @@ void Node::createChannel(const std::string &channel_name)
 void Node::setChannel(const std::string &channel_name)
 {
     if (this->channel_list.count(channel_name) == 0) {
-        SQ::warn("Node::setChannel", "cannot assign node %s to channel %s, channel does not exist", node_name.c_str(), channel_name.c_str());
+        warn("Node::setChannel", "cannot assign node %s to channel %s, channel does not exist", node_name.c_str(), channel_name.c_str());
         return;
     }
     this->current_channel = channel_name;
-    SQ::debug("Node::setChannel", "node %s on channel %s", node_name.c_str(), channel_name.c_str());
+    debug("Node::setChannel", "node %s on channel %s", node_name.c_str(), channel_name.c_str());
 }
 void Node::subscribe(const std::string &channel_node, const std::string &channel_name)
 {
@@ -39,18 +41,18 @@ void Node::subscribe(const std::string &channel_node, const std::string &channel
 void Node::addSubscriber(const std::string &node_name, const std::string &channel_name)
 {
     if (this->channel_list.count(channel_name) == 0) {
-        SQ::warn("Node::addSubscriber", "cannot assign node %s to channel %s, channel does not exist", node_name.c_str(), channel_name.c_str());
+        warn("Node::addSubscriber", "cannot assign node %s to channel %s, channel does not exist", node_name.c_str(), channel_name.c_str());
         return;
     }
     this->channel_list[channel_name].insert(node_name);
-    SQ::debug("Node::subscribe", "node %s subscribed to channel %s", node_name.c_str(), channel_name.c_str());
+    debug("Node::subscribe", "node %s subscribed to channel %s", node_name.c_str(), channel_name.c_str());
 }
 
 /********* observing *********/
 void Node::observe(const std::string &node_name)
 {
     Network::observe(this->node_name, node_name);
-    SQ::debug("Node::observe", "node %s observing %s", this->node_name.c_str(), node_name.c_str());
+    debug("Node::observe", "node %s observing %s", this->node_name.c_str(), node_name.c_str());
 }
 void Node::setObserver(const std::string &node_name)
 {
@@ -91,13 +93,13 @@ sptr<SquareEvent> Node::pop()
     eit++;
     this->notifyObservers(e);
     if (e->msg != MSG::CTLR_RELEASED) {
-        SQ::debug(node_name.c_str(), "popped: %s", e->tostr().c_str());
+        debug(node_name.c_str(), "popped: %s", e->tostr().c_str());
     }
     return e;
 }
 void Node::push(sptr<SquareEvent> event)
 {
-    // SQ::debug(node_name.c_str(), "queued: %s", event->tostr().c_str());
+    // debug(node_name.c_str(), "queued: %s", event->tostr().c_str());
     this->queued.push_back(event);
 }
 
@@ -106,25 +108,26 @@ void Node::enqueueEvents()
 {
     for ( auto& evt : this->queued) {
         this->events.push_back(evt);
-        // SQ::debug(node_name.c_str(), "enqueued: %s", evt->tostr().c_str());
+        // debug(node_name.c_str(), "enqueued: %s", evt->tostr().c_str());
     }
     this->queued.clear();
 }
 void Node::clearEvents()
 {
     for (auto& event : events)
-        SQ::destroy(event);
+        destroy(event);
     this->events.clear();
     eit = events.begin();
 }
 void Node::clearAll()
 {
     for (auto& e : queued)
-        SQ::destroy(e);
+        destroy(e);
     this->queued.clear();
 
     for (auto& e : events)
-        SQ::destroy(e);
+        destroy(e);
     this->events.clear();
     eit = events.begin();
+}
 }

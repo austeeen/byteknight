@@ -21,7 +21,7 @@ public:
 private:
     std::map<const Object::ID, Tile*> tileset;
     int numtiles;
-    std::vector<SQ::moveset> allmoves;
+    std::vector<bt::moveset> allmoves;
 
 };
 

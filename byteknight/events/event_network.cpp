@@ -1,6 +1,8 @@
 #include "event_network.hpp"
 #include "event_node.hpp"
 
+namespace bt
+{
 std::map<std::string, Node*> Network::node_table;
 std::set<std::string> Network::received_events;
 std::set<std::string> Network::processed_events;
@@ -38,7 +40,7 @@ const std::string Network::tostr()
 void Network::connectNode(const std::string& nd_name, Node* node)
 {
     if (node_table.count(nd_name)) {
-        SQ::warn("Network::connectNode", "cannot connect node %s -- already connected.", nd_name.c_str());
+        warn("Network::connectNode", "cannot connect node %s -- already connected.", nd_name.c_str());
         return;
     }
     node_table[nd_name] = node;
@@ -52,7 +54,7 @@ void Network::removeNode(const std::string& nd_name)
 void Network::subscribe(const std::string& nd_name, const std::string& chn_node, const std::string& chn_name)
 {
     if (!node_table.count(nd_name)) {
-        SQ::warn("Network::subscribe", "cannot subscribe node %s -- does not exist.", nd_name.c_str());
+        warn("Network::subscribe", "cannot subscribe node %s -- does not exist.", nd_name.c_str());
         return;
     }
     node_table[chn_node]->addSubscriber(nd_name, chn_name);
@@ -78,9 +80,10 @@ void Network::emitToNode(sptr<SquareEvent> event, const std::string& nd_name)
 void Network::__pushToNode(sptr<SquareEvent> event, const std::string &nd_name)
 {
     if(node_table.count(nd_name) == 0) {
-        SQ::warn("Network::__pushToNode", "cannot push event to %s -- does not exist", nd_name.c_str());
+        warn("Network::__pushToNode", "cannot push event to %s -- does not exist", nd_name.c_str());
         return;
     }
     received_events.insert(nd_name);
     node_table[nd_name]->push(event);
+}
 }

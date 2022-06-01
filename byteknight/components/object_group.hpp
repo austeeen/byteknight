@@ -35,13 +35,13 @@ private:
 
     const Groups::ID id;
     const std::string name;
-    Node* node;
+    bt::Node* node;
     Cursor* cursor;
     std::map<const Object::ID, GamePiece*> objects;
     GroupState state;
     std::map<const MSG, int> bit_table;
-    Bitmask ths_turn;
-    Bitmask trigger_turn;
+    bt::Bitmask ths_turn;
+    bt::Bitmask trigger_turn;
 };
 
 #endif // CMP_OBJGROUP_HPP

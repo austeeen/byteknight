@@ -1,6 +1,6 @@
 #include "widget.hpp"
 
-namespace gui
+namespace bt::gui
 {
 /**************************************************************************************************/
 /* WIDGET */
@@ -14,7 +14,7 @@ Widget::~Widget()
 }
 void Widget::updatePosition()
 {}
-const SQ::rect& Widget::getRect() const
+const rect& Widget::getRect() const
 {
     return this->_rect;
 }
@@ -26,7 +26,7 @@ ReactiveWidget::ReactiveWidget(const WidgetAsset& wdgt_ast)
 }
 ReactiveWidget::~ReactiveWidget()
 {
-    SQ::destroy(_action);
+    destroy(_action);
 }
 const sptr<SquareEvent> ReactiveWidget::getEvent() const
 {
@@ -38,28 +38,28 @@ const sptr<SquareEvent> ReactiveWidget::getEvent() const
 TargetableWidget::TargetableWidget(const WidgetAsset& wdgt_ast):
 ReactiveWidget(wdgt_ast), _name(wdgt_ast.name)
 {
-    _neighbors[SQ::dir4::up] = nullptr;
-    _neighbors[SQ::dir4::right] = nullptr;
-    _neighbors[SQ::dir4::down] = nullptr;
-    _neighbors[SQ::dir4::left] = nullptr;
+    _neighbors[dir4::up] = nullptr;
+    _neighbors[dir4::right] = nullptr;
+    _neighbors[dir4::down] = nullptr;
+    _neighbors[dir4::left] = nullptr;
 }
 TargetableWidget::~TargetableWidget()
 {
-    _neighbors[SQ::dir4::up] = nullptr;
-    _neighbors[SQ::dir4::right] = nullptr;
-    _neighbors[SQ::dir4::down] = nullptr;
-    _neighbors[SQ::dir4::left] = nullptr;
+    _neighbors[dir4::up] = nullptr;
+    _neighbors[dir4::right] = nullptr;
+    _neighbors[dir4::down] = nullptr;
+    _neighbors[dir4::left] = nullptr;
 }
-void TargetableWidget::setNeighbor(SQ::dir4 dir, TargetableWidget *t)
+void TargetableWidget::setNeighbor(dir4 dir, TargetableWidget *t)
 {
     printf("setting: %s:%d -> %s\n", this->_name.c_str(), (int) dir, t->getName().c_str());
     this->_neighbors[dir] = t;
 }
-bool TargetableWidget::hasNeighbor(SQ::dir4 d)
+bool TargetableWidget::hasNeighbor(dir4 d)
 {
     return this->_neighbors[d] != nullptr;
 }
-TargetableWidget* TargetableWidget::getNeighbor(SQ::dir4 d)
+TargetableWidget* TargetableWidget::getNeighbor(dir4 d)
 {
     return this->_neighbors[d];
 }
@@ -77,7 +77,7 @@ _node(new Node(wdgt_ast.name))
 }
 EventfulWidget::~EventfulWidget()
 {
-    SQ::destroy(_node);
+    destroy(_node);
 }
 
 /**************************************************************************************************/
@@ -101,7 +101,6 @@ _sprite(new sf::Sprite())
 }
 RenderedWidget::~RenderedWidget()
 {
-    SQ::destroy(this->_sprite);
+    destroy(this->_sprite);
 }
-
 }

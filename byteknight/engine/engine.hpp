@@ -1,14 +1,16 @@
-#ifndef SQR_ENGINE_HPP
-#define SQR_ENGINE_HPP
+#ifndef BYTE_ENGINE_HPP
+#define BYTE_ENGINE_HPP
 
 #include "common.hpp"
-#include "game_manager.hpp"
+#include "managers/game_manager.hpp"
 
-class SquareEngine
+namespace bt
+{
+class ByteEngine
 {
 public:
-    SquareEngine();
-    ~SquareEngine();
+    ByteEngine();
+    ~ByteEngine();
     void build();
     void startUp();
     void run();
@@ -23,5 +25,6 @@ private:
     void __printError(const std::string &str_state);
 
 };
+}
 
-#endif // SQR_ENGINE_HPP
+#endif // BYTE_ENGINE_HPP

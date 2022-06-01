@@ -19,7 +19,7 @@ class GameObject;
 class ObjectLayer: public LayerBase
 {
 public:
-    ObjectLayer(const std::string& name, SceneContext* scene_context, const ObjectLayerAsset &lyr_ast);
+    ObjectLayer(const std::string& name, bt::SceneContext* scene_context, const ObjectLayerAsset &lyr_ast);
     ~ObjectLayer() override;
     void build() override;
     void setUp() override;

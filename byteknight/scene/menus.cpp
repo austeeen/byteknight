@@ -1,10 +1,10 @@
 #include "menus.hpp"
-#include "widgets/widget.hpp"
-#include "widgets/button.hpp"
-#include "widgets/canvas.hpp"
-#include "widgets/cursor.hpp"
+#include "gui/widget.hpp"
+#include "gui/button.hpp"
+#include "gui/canvas.hpp"
+#include "gui/cursor.hpp"
 
-namespace gui
+namespace bt
 {
 
 Menu::Menu(SceneContext *scene_context, const MenuAsset* menu_ast) :
@@ -21,11 +21,11 @@ Menu::~Menu()
     __menu_ast = nullptr;
     __canvas = nullptr;
 
-    SQ::destroy(node);
+    destroy(node);
 
     for (auto [id, wdgt] : __widgets) {
         // TODO -- MAKE SURE WIDGETS HAVE PROPER DTOR
-        SQ::destroy(wdgt);
+        destroy(wdgt);
     }
     __widgets.clear();
     __targetable_stack.clear();
@@ -41,16 +41,16 @@ void Menu::build()
         switch(wdgt_ast.type_id)
         {
             case Widgets::BUTTON: {
-                this->__widgets[wdgt_ast.id] = new SimpleButton(this, this->scene_context, wdgt_ast);
+                this->__widgets[wdgt_ast.id] = new gui::SimpleButton(this, this->scene_context, wdgt_ast);
                 break;
             }
             case Widgets::CANVAS: {
-                this->__canvas = new Canvas(this, this->scene_context, wdgt_ast);
+                this->__canvas = new gui::Canvas(this, this->scene_context, wdgt_ast);
                 this->__widgets[wdgt_ast.id] = this->__canvas;
                 break;
             }
             case Widgets::CURSOR: {
-                this->__widgets[wdgt_ast.id] = new Cursor(this, this->scene_context, wdgt_ast);
+                this->__widgets[wdgt_ast.id] = new gui::Cursor(this, this->scene_context, wdgt_ast);
                 break;
             }
             default: { break; }
@@ -135,27 +135,27 @@ const sf::Vector2f& Menu::getCenter() const
 {
     return this->_view.getCenter();
 }
-template<> void Menu::add<TargetableWidget>(TargetableWidget* wdgt)
+template<> void Menu::add<gui::TargetableWidget>(gui::TargetableWidget* wdgt)
 {
     __targetable_stack.push_back(wdgt);
 }
-template<> void Menu::add<ReactiveWidget>(ReactiveWidget* wdgt)
+template<> void Menu::add<gui::ReactiveWidget>(gui::ReactiveWidget* wdgt)
 {
     __reactive_stack.push_back(wdgt);
 }
-template<> void Menu::add<EventfulWidget>(EventfulWidget* wdgt)
+template<> void Menu::add<gui::EventfulWidget>(gui::EventfulWidget* wdgt)
 {
     __event_stack.push_back(wdgt);
 }
-template<> void Menu::add<UpdatedWidget>(UpdatedWidget* wdgt)
+template<> void Menu::add<gui::UpdatedWidget>(gui::UpdatedWidget* wdgt)
 {
     __update_stack.push_back(wdgt);
 }
-template<> void Menu::add<RenderedWidget>(RenderedWidget* wdgt)
+template<> void Menu::add<gui::RenderedWidget>(gui::RenderedWidget* wdgt)
 {
     __render_stack.push_back(wdgt);
 }
-void Menu::getTargetables(std::vector<TargetableWidget*>& targets)
+void Menu::getTargetables(std::vector<gui::TargetableWidget*>& targets)
 {
     targets = __targetable_stack;
 }

@@ -1,5 +1,7 @@
 #include "io_devices.hpp"
 
+namespace bt
+{
 InputDevice::InputDevice()
 {}
 io::state InputDevice::get(const io::binding b)
@@ -12,7 +14,7 @@ io::state InputDevice::get(const io::binding b)
 }
 Keyboard::Keyboard() : InputDevice()
 {
-    SQ::msg("Keyboard::Keyboard()", "Using Keyboard");
+    msg("Keyboard::Keyboard()", "Using Keyboard");
     this->bindings[io::left] = sf::Keyboard::Left;
     this->bindings[io::right] = sf::Keyboard::Right;
     this->bindings[io::down] = sf::Keyboard::Down;
@@ -42,7 +44,7 @@ joy_indx(-1), button_count(0), has_x(false), has_y(false), has_z(false), connect
     has_x = sf::Joystick::hasAxis(joy_indx, sf::Joystick::X);
     has_y = sf::Joystick::hasAxis(joy_indx, sf::Joystick::Y);
     has_z = sf::Joystick::hasAxis(joy_indx, sf::Joystick::Z);
-    SQ::msg("Joystick::Joystick()", "Using Joystick [%d buttons, axis: (x:%d, y:%d, z:%d)]",
+    msg("Joystick::Joystick()", "Using Joystick [%d buttons, axis: (x:%d, y:%d, z:%d)]",
             button_count, has_x, has_y, has_z);
     this->bindings[io::select] = joy::snes::A;
     this->bindings[io::back] = joy::snes::B;
@@ -62,4 +64,5 @@ void Joystick::update()
     cur.setBit(io::back,   sf::Joystick::isButtonPressed(joy_indx, bindings[io::back]));
     cur.setBit(io::menu,   sf::Joystick::isButtonPressed(joy_indx, bindings[io::menu]));
     cur.setBit(io::quit,   sf::Joystick::isButtonPressed(joy_indx, bindings[io::quit]));
+}
 }

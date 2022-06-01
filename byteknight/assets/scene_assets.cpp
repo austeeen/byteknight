@@ -2,7 +2,7 @@
 #include "factory/asset_factory.hpp"
 
 /**************************************************************************************************/
-void LayerAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void LayerAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     BaseJsonAsset::loadFromJson(root, rsrc_factory);
     DATA::get(lyr_cols, root, "lyr_cols");
@@ -14,7 +14,7 @@ void LayerAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
     }
 }
 /**************************************************************************************************/
-void ObjectLayerAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void ObjectLayerAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     LayerAsset::loadFromJson(root, rsrc_factory);
     Json::Value object_list = root["objects"];
@@ -23,7 +23,7 @@ void ObjectLayerAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_fac
     }
 }
 /**************************************************************************************************/
-void InstanceAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void InstanceAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     BaseJsonAsset::loadFromJson(root, rsrc_factory);
     DATA::get(scenedata.board_size, root, "board_size");
@@ -35,7 +35,7 @@ void InstanceAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factor
     object_lyr_ast.loadFromJson(root["layers"][2], rsrc_factory);
 }
 /**************************************************************************************************/
-void MenuAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void MenuAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     BaseJsonAsset::loadFromJson(root, rsrc_factory);
     Json::Value widget_list = root["widgets"];

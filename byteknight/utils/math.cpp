@@ -1,6 +1,6 @@
 #include "math.hpp"
 
-namespace SQ {
+namespace bt {
 
 /**************************************************************************************************/
 /* LINE */
@@ -97,7 +97,7 @@ rect coord::torect(const float w, const float h) {
 rect coord::torect(const sf::Vector2f &v) {
     return rect((float) x * v.x, (float) y * v.y, v.x, v.y);
 }
-rect coord::torect(const SQ::rect &r) {
+rect coord::torect(const rect &r) {
     return rect((float) x * r.width, (float) y * r.height, r.width, r.height);
 }
 const std::string coord::tostr() const {

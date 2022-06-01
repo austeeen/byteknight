@@ -26,8 +26,8 @@ namespace DATA
 
 struct WidgetAsset: BaseJsonAsset
 {
-    WidgetAsset(Json::Value& root, const int id, ResourceFactory *rsrc_factory);
-    void loadFromJson(Json::Value& root, ResourceFactory *rsrc_factory) override;
+    WidgetAsset(Json::Value& root, const int id, bt::ResourceFactory *rsrc_factory);
+    void loadFromJson(Json::Value& root, bt::ResourceFactory *rsrc_factory) override;
     Widgets::ID id, type_id;
     Widgets::anchor anchor;
     sf::Texture img_texture;
@@ -35,7 +35,7 @@ struct WidgetAsset: BaseJsonAsset
     std::string img_src, anchor_str;
     // todo -- Render::Order render_order;
     int render_order;
-    SQ::rect position_rect, texture_rect;
+    bt::rect position_rect, texture_rect;
     // AnimationInfo anim_info;
     MSG action_msg;
 };

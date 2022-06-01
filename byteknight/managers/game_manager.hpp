@@ -5,6 +5,8 @@
 #include "context/game_context.hpp"
 #include "scene_manager.hpp"
 
+namespace bt
+{
 class GameManager
 {
 public:
@@ -21,5 +23,6 @@ private:
     GameContext *m_game_context;
     SceneManager *m_scene_manager;
 };
+}
 
 #endif // CTL_GAME_HPP

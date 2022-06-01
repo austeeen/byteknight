@@ -4,7 +4,7 @@
 #include <cstdint>
 #include "utils/util.hpp"
 
-namespace SQ
+namespace bt
 {
     const int X = 0;
     const int Y = 1;
@@ -50,7 +50,7 @@ namespace SQ
         coord(const rect &r, const sf::Vector2i &v);
         rect torect(const float w, const float h);
         rect torect(const sf::Vector2f &v);
-        rect torect(const SQ::rect &r);
+        rect torect(const rect &r);
         const std::string tostr() const;
     };
 
@@ -112,8 +112,8 @@ namespace SQ
         rect& operator=(const rect &r);
 
         inline void move(float *vel) {
-            this->left += (float)vel[SQ::X];
-            this->top  += (float)vel[SQ::Y];
+            this->left += (float)vel[X];
+            this->top  += (float)vel[Y];
         }
 
         inline void move(float x, float y) {

@@ -1,5 +1,8 @@
 #include "instance.hpp"
 
+namespace bt
+{
+
 Instance::Instance(SceneContext *scene_context, const InstanceAsset* inst_ast) :
 Scene(scene_context, inst_ast->name), inst_ast(inst_ast)
 {
@@ -32,21 +35,21 @@ Instance::~Instance()
     event_layers.clear();
     rendered_layers.clear();
     for (auto lyr : layers)
-        SQ::destroy(lyr);
+        destroy(lyr);
     layers.clear();
-    SQ::destroy(node);
+    destroy(node);
 }
 void Instance::build()
 {
     if(layers.empty())
-        SQ::warn("Instance::build", "layers vector is empty");
+        warn("Instance::build", "layers vector is empty");
     for (auto lyr : layers)
         lyr->build();
 }
 void Instance::setUp()
 {
     if(layers.empty())
-        SQ::warn("Instance::setUp", "layers vector is empty");
+        warn("Instance::setUp", "layers vector is empty");
 
     this->_view = sf::View((sf::FloatRect) this->inst_ast->scenedata.pxl_size);
     std::vector<GameObject*> objs;
@@ -90,7 +93,7 @@ void Instance::render(sf::RenderWindow* window)
 void Instance::onStart()
 {
     if(layers.empty())
-        SQ::warn("Instance::onStart", "layers vector is empty");
+        warn("Instance::onStart", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->onStart();
     }
@@ -99,7 +102,7 @@ void Instance::onStart()
 void Instance::onExit()
 {
     if(layers.empty())
-        SQ::warn("Instance::onExit", "layers vector is empty");
+        warn("Instance::onExit", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->onExit();
     }
@@ -107,7 +110,7 @@ void Instance::onExit()
 void Instance::onReset()
 {
     if(layers.empty())
-        SQ::warn("Instance::onReset", "layers vector is empty");
+        warn("Instance::onReset", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->onReset();
     }
@@ -116,7 +119,7 @@ void Instance::setActive()
 {
     this->controller->switchNodeChannel("inst_channel");
     if(layers.empty())
-        SQ::warn("Instance::setActive", "layers vector is empty");
+        warn("Instance::setActive", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->setActive();
     }
@@ -124,7 +127,7 @@ void Instance::setActive()
 void Instance::setPaused()
 {
     if(layers.empty())
-        SQ::warn("Instance::setPaused", "layers vector is empty");
+        warn("Instance::setPaused", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->setPaused();
     }
@@ -132,7 +135,7 @@ void Instance::setPaused()
 void Instance::setFrozen()
 {
     if(layers.empty())
-        SQ::warn("Instance::setFrozen", "layers vector is empty");
+        warn("Instance::setFrozen", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->setFrozen();
     }
@@ -140,8 +143,9 @@ void Instance::setFrozen()
 void Instance::setInactive()
 {
     if(layers.empty())
-        SQ::warn("Instance::setInactive", "layers vector is empty");
+        warn("Instance::setInactive", "layers vector is empty");
     for (auto lyr : layers) {
         lyr->setInactive();
     }
+}
 }

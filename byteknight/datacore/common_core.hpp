@@ -2,7 +2,7 @@
 #define CORE_COMMON_HPP
 
 #include "common.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 #include "object_core.hpp"
 
 
@@ -32,7 +32,7 @@ namespace Render {
 namespace Meta
 {
     struct gamedata {
-        SQ::rect board_size, tile_size, pxl_size;
+        bt::rect board_size, tile_size, pxl_size;
         unsigned int total_tiles;
     };
 }

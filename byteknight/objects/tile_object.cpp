@@ -1,27 +1,27 @@
 #include "tile_object.hpp"
 #include "cursor_object.hpp"
 
-Tile::Tile(const Object::ID id, const SQ::rect r, const SQ::coord c) :
+Tile::Tile(const Object::ID id, const bt::rect r, const bt::coord c) :
 ObjectBase(id, r, c)
 {
-    __neighbors[SQ::dir4::up] = nullptr;
-    __neighbors[SQ::dir4::right] = nullptr;
-    __neighbors[SQ::dir4::down] = nullptr;
-    __neighbors[SQ::dir4::left] = nullptr;
+    __neighbors[bt::dir4::up] = nullptr;
+    __neighbors[bt::dir4::right] = nullptr;
+    __neighbors[bt::dir4::down] = nullptr;
+    __neighbors[bt::dir4::left] = nullptr;
     __obj = nullptr;
     __tileshape = nullptr;
 }
 Tile::~Tile()
 {
-    SQ::destroy(__tileshape);
+    bt::destroy(__tileshape);
     for (int i = 0; i < 4; i++) {
         if (__neighbors[i] != nullptr)
-            __neighbors[i]->__removeNeighbor(static_cast<SQ::dir4>((i + 2) % 4));
+            __neighbors[i]->__removeNeighbor(static_cast<bt::dir4>((i + 2) % 4));
     }
     this->__obj = nullptr;
     this->__cursors.clear();
 }
-void Tile::__removeNeighbor(SQ::dir4 dir)
+void Tile::__removeNeighbor(bt::dir4 dir)
 {
     this->__neighbors[dir] = nullptr;
 }
@@ -43,15 +43,15 @@ void Tile::setUp()
     this->__tileshape->setOutlineColor(sf::Color::Red);
     this->__tileshape->setOutlineThickness(1);
 }
-void Tile::setNeighbor(SQ::dir4 dir, Tile *t)
+void Tile::setNeighbor(bt::dir4 dir, Tile *t)
 {
     this->__neighbors[dir] = t;
 }
-bool Tile::hasNeighbor(SQ::dir4 d)
+bool Tile::hasNeighbor(bt::dir4 d)
 {
     return this->__neighbors[d] != nullptr;
 }
-Tile* Tile::getNeighbor(SQ::dir4 d)
+Tile* Tile::getNeighbor(bt::dir4 d)
 {
     return this->__neighbors[d];
 }
@@ -90,12 +90,12 @@ Cursor* Tile::getCursor(const Groups::ID t)
 void Tile::clearCursor(const Groups::ID t)
 {
     if (this->__cursors.count(t) == 0) {
-        SQ::err("Tile::clearCursor", "cannot clear __cursors[%d], key does not exist.", t);
+        bt::err("Tile::clearCursor", "cannot clear __cursors[%d], key does not exist.", t);
         return;
     }
     this->__cursors[t] = nullptr;
 }
-void Tile::getTiles(std::vector<SQ::moveset> &moves, std::map<const Object::ID, Tile*> &tileset)
+void Tile::getTiles(std::vector<bt::moveset> &moves, std::map<const Object::ID, Tile*> &tileset)
 {
     tileset.clear();
     Tile *p = this;

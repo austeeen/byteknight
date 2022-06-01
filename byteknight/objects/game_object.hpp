@@ -48,7 +48,7 @@ protected:
     ObjectLayer* _layer;
     ObjectAsset _ast;
     Groups::ID _group_id;
-    Node* _node;
+    bt::Node* _node;
     Tile* _tile;
     cSprite* _sprite;
 };

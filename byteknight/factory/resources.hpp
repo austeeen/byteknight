@@ -2,8 +2,9 @@
 #define FCT_RSRCS_HPP
 
 #include "common.hpp"
-#include "gui/square_font.hpp"
 
+namespace bt
+{
 class JsonFileLoader
 {
 public:
@@ -28,5 +29,5 @@ struct imgRsrc: public rsrc {
     int img_cols;
     sf::Texture img_texture;
 };
-
+}
 #endif // FCT_RSRCS_HPP

@@ -5,6 +5,8 @@
 #include "context/scene_context.hpp"
 #include "io/controller.hpp"
 
+namespace bt
+{
 class Scene
 {
 public:
@@ -38,5 +40,6 @@ protected:
     sf::View _view;
     sf::RenderTexture _surface;
 };
+}
 
 #endif // SCN_SCENE_HPP

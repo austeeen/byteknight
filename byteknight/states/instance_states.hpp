@@ -3,13 +3,15 @@
 
 #include "generic_states.hpp"
 
-class Instance;
+namespace bt {
+    class Instance;
+}
 
 template <>
-class StartUp<Instance> : public BaseState<Instance>
+class StartUp<bt::Instance> : public BaseState<bt::Instance>
 {
 public:
-    StartUp(Instance* o);
+    StartUp(bt::Instance* o);
     virtual void enter() override;
     virtual void enter(sptr<SquareEvent> e) override {};
     virtual void next(sptr<SquareEvent> e) override;
@@ -20,10 +22,10 @@ public:
 };
 
 template <>
-class Running<Instance> : public BaseState<Instance>
+class Running<bt::Instance> : public BaseState<bt::Instance>
 {
 public:
-    Running(Instance* o);
+    Running(bt::Instance* o);
     virtual void enter() override;
     virtual void enter(sptr<SquareEvent> e) override {};
     virtual void next(sptr<SquareEvent> e) override;
@@ -34,10 +36,10 @@ public:
 };
 
 template <>
-class TearDown<Instance> : public BaseState<Instance>
+class TearDown<bt::Instance> : public BaseState<bt::Instance>
 {
 public:
-    TearDown(Instance* o);
+    TearDown(bt::Instance* o);
     virtual void enter() override {};
     virtual void enter(sptr<SquareEvent> e) override;
     virtual void next(sptr<SquareEvent> e) override;

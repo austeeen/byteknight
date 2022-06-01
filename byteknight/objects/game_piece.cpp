@@ -19,8 +19,8 @@ GameObject(id, layer, ast)
 GamePiece::~GamePiece()
 {
     __target = nullptr;
-    SQ::destroy(_moveset);
-    SQ::destroy(_physics);
+    bt::destroy(_moveset);
+    bt::destroy(_physics);
 }
 void GamePiece::build()
 {
@@ -66,7 +66,7 @@ bool GamePiece::isIdle() const
 }
 void GamePiece::setTile(Tile* const next)
 {
-    SQ::throwForNullPtr(next, "NEXT TILE");
+    bt::throwForNullPtr(next, "NEXT TILE");
     if (this->_tile != nullptr) {
         this->_tile->clearObject();
     }

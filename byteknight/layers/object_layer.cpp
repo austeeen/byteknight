@@ -2,7 +2,7 @@
 #include "objects/cursor_object.hpp"
 #include "objects/game_piece.hpp"
 
-ObjectLayer::ObjectLayer(const std::string& name, SceneContext* scene_context, const ObjectLayerAsset &lyr_ast) :
+ObjectLayer::ObjectLayer(const std::string& name, bt::SceneContext* scene_context, const ObjectLayerAsset &lyr_ast) :
 LayerBase(name, scene_context, lyr_ast)
 {
     for (const auto& ast : lyr_ast.obj_list)
@@ -35,7 +35,7 @@ bool ObjectLayer::__createObject(const ObjectAsset& ast)
             break;
         }
         default: {
-            SQ::err("ObjectLayer::ObjectLayer", "Unknown object type %s", ast.type);
+            bt::err("ObjectLayer::ObjectLayer", "Unknown object type %s", ast.type);
             break;
         };
     }
@@ -48,11 +48,11 @@ void ObjectLayer::__createGroup(const Groups::ID id, const std::string& group_na
 ObjectLayer::~ObjectLayer()
 {
     for (auto [id, grp] : __groups)
-        SQ::destroy(grp);
+        bt::destroy(grp);
     __groups.clear();
 
     for (auto [id, obj] : __allobjects)
-        SQ::destroy(obj);
+        bt::destroy(obj);
     __allobjects.clear();
 }
 void ObjectLayer::build()
@@ -122,7 +122,7 @@ void ObjectLayer::__updateDespawnedObjects()
 }
 void ObjectLayer::__destroyObject(const Object::ID id)
 {
-    SQ::destroy(__allobjects[id]);
+    bt::destroy(__allobjects[id]);
     __allobjects.erase(id);
 }
 void ObjectLayer::render(sf::RenderWindow* window)
@@ -140,8 +140,8 @@ bool ObjectLayer::canExit()
 }
 void ObjectLayer::onStart()
 {
-    SQ::throwForNullPtr(__groups[Groups::RED_TEAM], "red team");
-    SQ::throwForNullPtr(__groups[Groups::BLUE_TEAM], "blue team");
+    bt::throwForNullPtr(__groups[Groups::RED_TEAM], "red team");
+    bt::throwForNullPtr(__groups[Groups::BLUE_TEAM], "blue team");
     // todo -- allow user to "roll" to decide whose first?
     this->__active_group = __groups[Groups::RED_TEAM];
     this->__inactive_group = __groups[Groups::BLUE_TEAM];

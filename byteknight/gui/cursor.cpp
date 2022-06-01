@@ -1,6 +1,6 @@
 #include "cursor.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 Cursor::Cursor(Menu* menu, SceneContext* scene_context, const WidgetAsset& wdgt_ast):
@@ -36,7 +36,7 @@ void Cursor::processEvents()
 {
     while (this->_node->hasEvents()) {
         sptr<SquareEvent> e = this->_node->pop();
-        if (e->binding.dir != SQ::dir4::none) {
+        if (e->binding.dir != dir4::none) {
             this->setTarget(e->binding.dir);
         }
         else if (e->binding.binding == io::select) {
@@ -61,18 +61,18 @@ void Cursor::render(sf::RenderTexture& surface)
 void Cursor::updatePosition()
 {
     if (this->__cur_target == nullptr) {
-        SQ::warn("gui::Cursor::updatePosition", "called but cursor has no current target");
+        warn("gui::Cursor::updatePosition", "called but cursor has no current target");
         return;
     }
     // todo -- eventually switch on an anchor to set where it anchors to.
-    const SQ::rect trect = this->__cur_target->getRect();
+    const rect trect = this->__cur_target->getRect();
     // case LEFT:
     this->_rect.right = trect.left;
     this->_rect.centery = trect.centery;
 
     std::cout << "cursor rect: " << this->_rect.tostr() << std::endl;
 }
-void Cursor::setTarget(SQ::dir4 dir)
+void Cursor::setTarget(dir4 dir)
 {
     if (this->__cur_target->hasNeighbor(dir)) {
         this->__cur_target = this->__cur_target->getNeighbor(dir);
@@ -85,17 +85,17 @@ void Cursor::__setUpTargets()
 
     // align targets like tiles -- currently only supports vertical alignment
     for (auto& t : __targets) {
-        SQ::rect trect = t->getRect();
+        rect trect = t->getRect();
         // arbitrarily chose 100 -- could in theory be an issue
         float min_above = 100.0f;
         float min_below = 100.0f;
         for (auto& n : __targets) {
-            SQ::rect nrect = n->getRect();
+            rect nrect = n->getRect();
             // this only applies to vertical alignment
             if (nrect.bottom != trect.bottom) {
                 float dabv = trect.top - nrect.bottom;
                 if (dabv < min_above && dabv > 0.0f) {
-                    t->setNeighbor(SQ::dir4::up, n);
+                    t->setNeighbor(dir4::up, n);
                     min_above = dabv;
                 }
             }
@@ -103,7 +103,7 @@ void Cursor::__setUpTargets()
             if (nrect.top != trect.top) {
                 float dblw =  nrect.top - trect.bottom;
                 if (dblw < min_below && dblw > 0.0f) {
-                    t->setNeighbor(SQ::dir4::down, n);
+                    t->setNeighbor(dir4::down, n);
                     min_below = dblw;
                 }
             }

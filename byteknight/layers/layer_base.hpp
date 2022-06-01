@@ -8,7 +8,7 @@
 class LayerBase
 {
 public:
-    LayerBase(const std::string& name, SceneContext* scene_context, const LayerAsset &lyr_ast):
+    LayerBase(const std::string& name, bt::SceneContext* scene_context, const LayerAsset &lyr_ast):
     scene_name(name), scene_context(scene_context), lyr_ast(lyr_ast)
     {};
     virtual ~LayerBase() {
@@ -33,11 +33,11 @@ public:
 
     const std::string& name() const { return lyr_ast.name; }
     const LayerAsset* getAsset() { return &lyr_ast; }
-    SceneContext* getContext() { return scene_context; }
+    bt::SceneContext* getContext() { return scene_context; }
     Meta::gamedata& getSceneData() { return scene_context->getSceneData(); }
 protected:
     const std::string scene_name;
-    SceneContext* scene_context;
+    bt::SceneContext* scene_context;
     const LayerAsset lyr_ast;
 };
 

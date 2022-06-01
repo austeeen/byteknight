@@ -1,5 +1,7 @@
 #include "game_context.hpp"
 
+namespace bt
+{
 GameContext::GameContext()
 {
     rsrc_factory = new ResourceFactory("res/meta.cfg.json");
@@ -8,13 +10,13 @@ GameContext::GameContext()
 }
 GameContext::~GameContext()
 {
-    SQ::destroy(ast_factory);
-    SQ::destroy(rsrc_factory);
-    SQ::destroy(ctlr);
+    destroy(ast_factory);
+    destroy(rsrc_factory);
+    destroy(ctlr);
 }
 void GameContext::build()
 {
-    SQ::msg("GameContext::build", "building...");
+    msg("GameContext::build", "building...");
     rsrc_factory->build();
     ast_factory->build();
 
@@ -35,5 +37,6 @@ void GameContext::windowExited()
     if(m_window.isOpen())
         m_window.close();
     else
-        SQ::err("GameContext::windowExited", "tried to close window, but window is not open");
+        err("GameContext::windowExited", "tried to close window, but window is not open");
+}
 }

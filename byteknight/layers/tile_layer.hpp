@@ -3,7 +3,7 @@
 
 #include "common.hpp"
 #include "layer_base.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 #include "assets/scene_assets.hpp"
 
 class GameObject;
@@ -14,7 +14,7 @@ class Tile;
 class TileLayer: public LayerBase
 {
 public:
-    TileLayer(const std::string& name, SceneContext* scene_context, const LayerAsset& lyr_ast);
+    TileLayer(const std::string& name, bt::SceneContext* scene_context, const LayerAsset& lyr_ast);
     ~TileLayer() override;
     void build() override;
     void setUp() override;

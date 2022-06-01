@@ -5,6 +5,8 @@
 #include "events/event_node.hpp"
 #include "io_devices.hpp"
 
+namespace bt
+{
 class Controller
 {
 public:
@@ -19,6 +21,6 @@ private:
     Node node;
     InputDevice* input_device;
 };
-
+}
 
 #endif // INP_CONTROLLER_H

@@ -14,7 +14,7 @@ public:
     ~Stateful() {
         _cur_state = nullptr;
         for (auto [k, s] : _states)
-            SQ::destroy(s);
+            bt::destroy(s);
         _states.clear();
     }
     void switchState(statekey next_state) {

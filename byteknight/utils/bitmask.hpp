@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <utils/exceptions.hpp>
 
+namespace bt
+{
 class Bitmask
 {
 public:
@@ -26,4 +28,6 @@ public:
 private:
     uint64_t __mask;
 };
+}
+
 #endif /* BITMASK */

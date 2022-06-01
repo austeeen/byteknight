@@ -13,7 +13,7 @@ public:
     void create() override;
     void update(const float dt) override;
     bool setDestination(Tile* tile);
-    bool isMoving() { return vel[SQ::X] || vel[SQ::Y]; };
+    bool isMoving() { return vel[bt::X] || vel[bt::Y]; };
 
 private:
     void __setNewTarget(const sf::Vector2f new_target);

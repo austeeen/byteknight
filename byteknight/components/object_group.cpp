@@ -2,7 +2,7 @@
 #include "objects/cursor_object.hpp"
 
 cObjectGroup::cObjectGroup(ObjectLayer* lyr, const Groups::ID id, const std::string& name):
-LayerComponent(lyr), id(id), name(name), node(new Node(name)), cursor(nullptr), state(GroupState::inactive)
+LayerComponent(lyr), id(id), name(name), node(new bt::Node(name)), cursor(nullptr), state(GroupState::inactive)
 {
     ths_turn.clearMask();
     trigger_turn.clearMask();
@@ -12,7 +12,7 @@ LayerComponent(lyr), id(id), name(name), node(new Node(name)), cursor(nullptr), 
 }
 cObjectGroup::~cObjectGroup()
 {
-    SQ::destroy(node);
+    bt::destroy(node);
 
     if (cursor != nullptr) {
         cursor->removeGroup();
@@ -44,7 +44,7 @@ void cObjectGroup::add(const Object::ID id, GameObject* obj)
             break;
         }
         default: {
-            SQ::warn("cObjectGroup::add", "could not determine object type");
+            bt::warn("cObjectGroup::add", "could not determine object type");
         }
     }
 }
@@ -97,7 +97,7 @@ void cObjectGroup::lateUpdate()
         }
         ths_turn.setBit((int) e->msg);
         if (trigger_turn == (ths_turn & trigger_turn)) {
-            SQ::debug("cObjectGroup::lateUpdate", "triggered next turn");
+            bt::debug("cObjectGroup::lateUpdate", "triggered next turn");
             this->ths_turn.clearMask();
             this->lyr->swapActiveGroup();
         }

@@ -14,10 +14,10 @@ void cPhysics::update(const float dt)
         __setNewTarget(move_queue.back());
         move_queue.pop_back();
     }
-    if (!sign[SQ::X] && !sign[SQ::Y]) { return; }
+    if (!sign[bt::X] && !sign[bt::Y]) { return; }
 
-    if (sign[SQ::X]) { __updateAxis(SQ::X, dt); }
-    if (sign[SQ::Y]) { __updateAxis(SQ::Y, dt); }
+    if (sign[bt::X]) { __updateAxis(bt::X, dt); }
+    if (sign[bt::Y]) { __updateAxis(bt::Y, dt); }
 }
 bool cPhysics::setDestination(Tile* tile)
 {
@@ -30,12 +30,12 @@ bool cPhysics::setDestination(Tile* tile)
 }
 void cPhysics::__setNewTarget(const sf::Vector2f new_target)
 {
-    target[SQ::X] = new_target.x;
-    target[SQ::Y] = new_target.y;
+    target[bt::X] = new_target.x;
+    target[bt::Y] = new_target.y;
 
     // set axis directional signs ( -1, 0, 1 )
-    sign[SQ::X] = sgn(target[SQ::X] - _obj->rect.centerx);
-    sign[SQ::Y] = sgn(target[SQ::Y] - _obj->rect.centery);
+    sign[bt::X] = sgn(target[bt::X] - _obj->rect.centerx);
+    sign[bt::Y] = sgn(target[bt::Y] - _obj->rect.centery);
 }
 void cPhysics::__updateAxis(const int ax, const float dt)
 {

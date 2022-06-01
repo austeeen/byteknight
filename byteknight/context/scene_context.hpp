@@ -3,7 +3,10 @@
 
 #include "common.hpp"
 #include "datacore/common_core.hpp"
-#include "gui/square_font.hpp"
+#include "gui/font.hpp"
+
+namespace bt
+{
 
 class Scene;
 class GameContext;
@@ -22,7 +25,7 @@ public:
     void setSceneData(Meta::gamedata data);
     Meta::gamedata& getSceneData();
 
-    SQ::Font* font;
+    gui::Font* font;
 
 private:
     GameContext* __game_context;
@@ -31,4 +34,5 @@ private:
     Meta::gamedata __scene_data;
 };
 
+}
 #endif // CTX_SCENE_CONTEXT_HPP

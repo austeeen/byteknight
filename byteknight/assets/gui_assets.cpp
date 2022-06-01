@@ -12,7 +12,7 @@ void DATA::get(AnchoredPosition& dst, const Json::Value &val, const std::string&
         return;
     }
     std::vector<std::string> keywrds;
-    SQ::split(anchor_str, '_', keywrds);
+    bt::split(anchor_str, '_', keywrds);
     dst.target = keywrds[0];
     dst.x_anchor = keywrds[1];
     dst.y_anchor = keywrds[2];
@@ -31,12 +31,12 @@ void DATA::get(AnimationInfo& dst, const Json::Value &val, const std::string& ke
 
 /**************************************************************************************************/
 
-WidgetAsset::WidgetAsset(Json::Value &root, const int id, ResourceFactory *rsrc_factory)
+WidgetAsset::WidgetAsset(Json::Value &root, const int id, bt::ResourceFactory *rsrc_factory)
 {
     this->id = id;
     this->loadFromJson(root, rsrc_factory);
 }
-void WidgetAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void WidgetAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     BaseJsonAsset::loadFromJson(root, rsrc_factory);
     type_id = Widgets::IDMAP.at(type);
@@ -65,7 +65,7 @@ void WidgetAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
             position_rect.left = 0.f;
             position_rect.top = 0.f;
         } else {
-            position_rect = SQ::rect(sf::Sprite(img_texture).getLocalBounds());
+            position_rect = bt::rect(sf::Sprite(img_texture).getLocalBounds());
         }
     }
 

@@ -1,5 +1,7 @@
 #include "bitmask.hpp"
 
+namespace bt
+{
 Bitmask::Bitmask() :
 __mask(0)
 {}
@@ -13,7 +15,7 @@ uint64_t Bitmask::getMask() const
 }
 bool Bitmask::getBit(const int pos) const
 {
-    SQ::throwForBitOverflow(pos, __mask);
+    throwForBitOverflow(pos, __mask);
     return (__mask & (1 << pos)) != 0;
 }
 void Bitmask::setBit(const int pos, const bool on)
@@ -25,12 +27,12 @@ void Bitmask::setBit(const int pos, const bool on)
 }
 void Bitmask::setBit(const int pos)
 {
-    SQ::throwForBitOverflow(pos, __mask);
+    throwForBitOverflow(pos, __mask);
     __mask = __mask | 1 << pos;
 }
 void Bitmask::clearBit(const int pos)
 {
-    SQ::throwForBitOverflow(pos, __mask);
+    throwForBitOverflow(pos, __mask);
     __mask = __mask & ~(1 << pos);
 }
 void Bitmask::clearMask()
@@ -52,4 +54,5 @@ bool Bitmask::operator==(const Bitmask& other) const
 bool Bitmask::operator==(const uint64_t& other) const
 {
     return this->__mask == other;
+}
 }

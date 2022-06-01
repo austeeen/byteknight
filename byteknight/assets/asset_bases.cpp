@@ -23,14 +23,14 @@ void get(int& dst, const Json::Value &val, const std::string& key) {
 void get(std::string& dst, const Json::Value &val, const std::string& key) {
     dst = val.get(key, _STR).asString();
 }
-void get(SQ::coord& dst, const Json::Value &val, const std::string& key) {
-    dst = SQ::coord(val.get(key, _COORD).asString());
+void get(bt::coord& dst, const Json::Value &val, const std::string& key) {
+    dst = bt::coord(val.get(key, _COORD).asString());
 }
-void get(SQ::rect& dst, const Json::Value &val, const std::string& key) {
-    dst = SQ::rect(val.get(key, _RECT).asString());
+void get(bt::rect& dst, const Json::Value &val, const std::string& key) {
+    dst = bt::rect(val.get(key, _RECT).asString());
 }
 void get(sf::FloatRect& dst, const Json::Value &val, const std::string& key) {
-    dst = SQ::rect(val.get(key, _RECT).asString());
+    dst = bt::rect(val.get(key, _RECT).asString());
 }
 void get(MSG& dst, const Json::Value &val, const std::string& key) {
     std::string action_str = "";
@@ -40,15 +40,15 @@ void get(MSG& dst, const Json::Value &val, const std::string& key) {
         dst = MSGTBL.at(action_str);
     }
 }
-void xycoord(SQ::coord& dst, const Json::Value &val, const std::string& key) {
-    dst = SQ::coord(val.get(key, _COORD).asString(), 0, 0);
+void xycoord(bt::coord& dst, const Json::Value &val, const std::string& key) {
+    dst = bt::coord(val.get(key, _COORD).asString(), 0, 0);
 }
-void xycoord(SQ::coord& dst, const Json::Value &val, const std::string& key, const int c) {
-    dst = SQ::coord(val.get(key, _COORD).asString(), 0, c);
+void xycoord(bt::coord& dst, const Json::Value &val, const std::string& key, const int c) {
+    dst = bt::coord(val.get(key, _COORD).asString(), 0, c);
 }
 }
 
-void BaseJsonAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void BaseJsonAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     DATA::get(name, root, "name");
     DATA::get(type, root, "type");

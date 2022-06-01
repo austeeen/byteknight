@@ -11,6 +11,8 @@
 #include "layers/tile_layer.hpp"
 #include "layers/backdrop_layer.hpp"
 
+namespace bt
+{
 class Instance: public Scene, public Stateful<Instance>
 {
     friend class StartUp<Instance>;
@@ -45,5 +47,5 @@ private:
     TileLayer* tile_layer;
     ObjectLayer* object_layer;
 };
-
+}
 #endif // SCN_INSTANCE_HPP

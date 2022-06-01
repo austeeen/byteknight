@@ -20,7 +20,7 @@ Cursor::~Cursor()
 {
     _selected_obj = nullptr;
     _hovered_obj = nullptr;
-    SQ::destroy(_physics);
+    bt::destroy(_physics);
 }
 void Cursor::build()
 {
@@ -61,7 +61,7 @@ bool Cursor::isIdle() const
 }
 void Cursor::setTile(Tile* const next)
 {
-    SQ::throwForNullPtr(next, "NEXT TILE");
+    bt::throwForNullPtr(next, "NEXT TILE");
 
     if (this->_tile != nullptr){
         this->_tile->clearCursor(this->_group_id);
@@ -119,7 +119,7 @@ void Cursor::_renderHoveredObject(sf::RenderWindow* window)
 }
 void Cursor::__bindingInput(BindingEvent binding)
 {
-    if (binding.dir != SQ::dir4::none) {
+    if (binding.dir != bt::dir4::none) {
         this->__changeTile(binding.dir);
     }
     else {
@@ -135,7 +135,7 @@ void Cursor::__bindingInput(BindingEvent binding)
         }
     }
 }
-void Cursor::__changeTile(SQ::dir4 dir)
+void Cursor::__changeTile(bt::dir4 dir)
 {
     Tile* next_tile = this->_tile->getNeighbor(dir);
     if (this->_physics->setDestination(next_tile)) {

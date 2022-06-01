@@ -1,6 +1,6 @@
 #include "button.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 SimpleButton::SimpleButton(Menu* menu, SceneContext* scene_context, const WidgetAsset& wdgt_ast):

@@ -23,7 +23,7 @@ public:
 private:
     switchtimer __flicker;
     sf::Sprite __sprite;
-    SQ::rect __texture_rect, __current_rect, __collision_rect;
+    bt::rect __texture_rect, __current_rect, __collision_rect;
 };
 
 #endif // CMP_SPRITE_HPP

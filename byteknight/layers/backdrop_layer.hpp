@@ -3,12 +3,12 @@
 
 #include "common.hpp"
 #include "layer_base.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 
 class BackdropLayer: public LayerBase
 {
 public:
-    BackdropLayer(const std::string& name, SceneContext* scene_context, const LayerAsset& lyr_ast);
+    BackdropLayer(const std::string& name, bt::SceneContext* scene_context, const LayerAsset& lyr_ast);
     ~BackdropLayer() override {};
     void build() override;
     void setUp() override {};

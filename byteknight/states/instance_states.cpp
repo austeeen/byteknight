@@ -3,26 +3,26 @@
 
 /**************************************************************************************************/
 
-StartUp<Instance>::StartUp(Instance* o): BaseState<Instance>(o)
+StartUp<bt::Instance>::StartUp(bt::Instance* o): BaseState<bt::Instance>(o)
 {}
-void StartUp<Instance>::enter()
+void StartUp<bt::Instance>::enter()
 {}
-void StartUp<Instance>::next(sptr<SquareEvent> e)
+void StartUp<bt::Instance>::next(sptr<SquareEvent> e)
 {}
-void StartUp<Instance>::exit()
+void StartUp<bt::Instance>::exit()
 {}
-void StartUp<Instance>::update(const float dt)
+void StartUp<bt::Instance>::update(const float dt)
 {}
-void StartUp<Instance>::render(sf::RenderWindow* window)
+void StartUp<bt::Instance>::render(sf::RenderWindow* window)
 {}
 
 /**************************************************************************************************/
 
-Running<Instance>::Running(Instance* o): BaseState<Instance>(o)
+Running<bt::Instance>::Running(bt::Instance* o): BaseState<bt::Instance>(o)
 {}
-void Running<Instance>::enter()
+void Running<bt::Instance>::enter()
 {}
-void Running<Instance>::next(sptr<SquareEvent> e)
+void Running<bt::Instance>::next(sptr<SquareEvent> e)
 {
     switch(e->msg) {
         case MSG::CTLR_PRESSED: {
@@ -47,31 +47,31 @@ void Running<Instance>::next(sptr<SquareEvent> e)
         default: { break; }
     }
 }
-void Running<Instance>::exit()
+void Running<bt::Instance>::exit()
 {}
-void Running<Instance>::update(const float dt)
+void Running<bt::Instance>::update(const float dt)
 {}
-void Running<Instance>::render(sf::RenderWindow* window)
+void Running<bt::Instance>::render(sf::RenderWindow* window)
 {}
 
 /**************************************************************************************************/
 
-TearDown<Instance>::TearDown(Instance* o): BaseState<Instance>(o)
+TearDown<bt::Instance>::TearDown(bt::Instance* o): BaseState<bt::Instance>(o)
 {}
-void TearDown<Instance>::enter(sptr<SquareEvent> e)
+void TearDown<bt::Instance>::enter(sptr<SquareEvent> e)
 {
     std::cout << "GAME OVER!" << std::endl;
     if (e->msg_str != "") {
         std::cout << e->msg_str << " LOST" << std::endl;
     }
 }
-void TearDown<Instance>::next(sptr<SquareEvent> e)
+void TearDown<bt::Instance>::next(sptr<SquareEvent> e)
 {}
-void TearDown<Instance>::exit()
+void TearDown<bt::Instance>::exit()
 {
     this->_obj->node->notifyNode(mkptr<SquareEvent>(MSG::EXIT_GAME), "scene_manager");
 }
-void TearDown<Instance>::update(const float dt)
+void TearDown<bt::Instance>::update(const float dt)
 {
     bool exit = true;
     for (auto& lyr : this->_obj->layers) {
@@ -81,5 +81,5 @@ void TearDown<Instance>::update(const float dt)
         this->_obj->switchState(statekey::startup);
     }
 }
-void TearDown<Instance>::render(sf::RenderWindow* window)
+void TearDown<bt::Instance>::render(sf::RenderWindow* window)
 {}

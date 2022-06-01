@@ -3,10 +3,10 @@
 ObjectBase::ObjectBase(const Object::ID id) :
 _id(id)
 {}
-ObjectBase::ObjectBase(const Object::ID id, const SQ::rect& rect) :
+ObjectBase::ObjectBase(const Object::ID id, const bt::rect& rect) :
 rect(rect), _id(id)
 {}
-ObjectBase::ObjectBase(const Object::ID id, const SQ::rect& rect, const SQ::coord& crd) :
+ObjectBase::ObjectBase(const Object::ID id, const bt::rect& rect, const bt::coord& crd) :
 rect(rect), crd(crd), _id(id)
 {}
 ObjectBase::~ObjectBase()

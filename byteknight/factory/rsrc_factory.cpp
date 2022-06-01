@@ -1,11 +1,13 @@
 #include "rsrc_factory.hpp"
 
+namespace bt
+{
 ResourceFactory::ResourceFactory(const std::string& meta_cfg_fp):
- meta_cfg_fp(meta_cfg_fp), __font(new SQ::Font())
+ meta_cfg_fp(meta_cfg_fp), __font(new gui::Font())
 {}
 ResourceFactory::~ResourceFactory()
 {
-    SQ::destroy(__font);
+    destroy(__font);
     scene_cache.clear();
     table_cache.clear();
     image_cache.clear();
@@ -14,7 +16,7 @@ void ResourceFactory::build()
 {
     jsonRsrc* config = static_cast<jsonRsrc*>(__getRsrc(meta_cfg_fp));
     if (!config->load(meta_cfg_fp)) {
-        SQ::err("ResourceFactory::build", "failed to load %s", meta_cfg_fp.c_str());
+        err("ResourceFactory::build", "failed to load %s", meta_cfg_fp.c_str());
         delete config;
         return;
     }
@@ -70,7 +72,7 @@ void ResourceFactory::getImage(sf::Texture &img_txtr, int &img_cols, const std::
     img_txtr = image_cache.at(key).img_texture;
     img_cols = image_cache.at(key).img_cols;
 }
-SQ::Font* ResourceFactory::getFont()
+gui::Font* ResourceFactory::getFont()
 {
     return this->__font;
 }
@@ -91,15 +93,16 @@ rsrc* ResourceFactory::__getRsrc(const std::string& fp)
         else if (ext == ".cfg")
             return new jsonRsrc();
         else
-            SQ::err("ResourceFactory::__getRsrc", "unrecognized json sub-extension %s", ext.c_str());
+            err("ResourceFactory::__getRsrc", "unrecognized json sub-extension %s", ext.c_str());
     } else
-        SQ::err("ResourceFactory::__getRsrc", "unrecognized extension %s", ext.c_str());
-    throw SQ::BadFileExtensionException("ResourceFactory::getRsrc", fp);
+        err("ResourceFactory::__getRsrc", "unrecognized extension %s", ext.c_str());
+    throw BadFileExtensionException("ResourceFactory::getRsrc", fp);
 }
 template <class R>
 void ResourceFactory::__cacheRsrc(std::map<std::string, R> &cache, const std::string& key, const std::string& fp)
 {
     cache[key] = R();
     if (!cache[key].load(fp))
-        SQ::err("ResourceFactory::__cacheRsrc", "failed to load %s", key.c_str());
+        err("ResourceFactory::__cacheRsrc", "failed to load %s", key.c_str());
+}
 }

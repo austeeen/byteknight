@@ -8,6 +8,8 @@
 #include "scene/instance.hpp"
 #include "scene/menus.hpp"
 
+namespace bt
+{
 class GameManager;
 
 class SceneManager
@@ -55,5 +57,5 @@ private:
     std::string active_scene_name;
 
 };
-
+}
 #endif // CTL_SCENE_HPP

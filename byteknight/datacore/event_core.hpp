@@ -2,7 +2,7 @@
 #define CORE_EVENT_HPP
 
 #include "common.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 #include "object_core.hpp"
 #include "io_core.hpp"
 
@@ -74,18 +74,18 @@ static const std::map<std::string, MSG> MSGTBL {
 
 struct BindingEvent
 {
-    BindingEvent(): binding(io::none), dir(SQ::dir4::none) {}
-    BindingEvent(io::binding b): binding(b), dir(SQ::dir4::none) {
+    BindingEvent(): binding(io::none), dir(bt::dir4::none) {}
+    BindingEvent(io::binding b): binding(b), dir(bt::dir4::none) {
         switch (b) {
-            case io::up: { dir = SQ::dir4::up; break; }
-            case io::down: { dir = SQ::dir4::down; break; }
-            case io::left: { dir = SQ::dir4::left; break; }
-            case io::right: { dir = SQ::dir4::right; break; }
-            default: { dir = SQ::dir4::none; break; }
+            case io::up: { dir = bt::dir4::up; break; }
+            case io::down: { dir = bt::dir4::down; break; }
+            case io::left: { dir = bt::dir4::left; break; }
+            case io::right: { dir = bt::dir4::right; break; }
+            default: { dir = bt::dir4::none; break; }
         }
     }
     io::binding binding;
-    SQ::dir4 dir;
+    bt::dir4 dir;
 };
 
 class Tile;

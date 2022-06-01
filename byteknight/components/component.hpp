@@ -2,7 +2,7 @@
 #define CMP_COMPONENT_HPP
 
 #include "common.hpp"
-#include "math/math.hpp"
+#include "utils/math.hpp"
 #include "assets/object_assets.hpp"
 #include "assets/scene_assets.hpp"
 

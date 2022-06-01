@@ -1,13 +1,15 @@
 #include "logging.hpp"
 
-void SQ::LOG::setlvl(enum SQ::LOG::loglevel& lvl, const int lvl_num)
+namespace bt
+{
+void LOG::setlvl(enum LOG::loglevel& lvl, const int lvl_num)
 {
     if (lvl_num < numlvls) {
-        lvl = SQ::LOG::loglevel(lvl_num);
+        lvl = LOG::loglevel(lvl_num);
     } else {
-        std::cout << "SQ::LOG::setlvl cannot set log level = " << lvl_num << std::endl;
-        std::cout << "SQ::LOG::setlvl setting default log level [debug](4)" << std::endl;
-        lvl = SQ::LOG::loglevel::dbg;
+        std::cout << "LOG::setlvl cannot set log level = " << lvl_num << std::endl;
+        std::cout << "LOG::setlvl setting default log level [debug](4)" << std::endl;
+        lvl = LOG::loglevel::dbg;
     }
 }
 
@@ -30,7 +32,7 @@ void __print(va_list& args, const char* pre_fmt, const char* where, const char* 
     delete[] what_str;
 }
 
-void SQ::debug(const char *where, const char *fmt, ...)
+void debug(const char *where, const char *fmt, ...)
 {
     if (LOG::lvl < LOG::loglevel::dbg) {
         return;
@@ -41,7 +43,7 @@ void SQ::debug(const char *where, const char *fmt, ...)
     va_end(args);
 }
 
-void SQ::msg(const char *where, const char *fmt, ...)
+void msg(const char *where, const char *fmt, ...)
 {
     if (LOG::lvl < LOG::loglevel::msg) {
         return;
@@ -52,7 +54,7 @@ void SQ::msg(const char *where, const char *fmt, ...)
     va_end(args);
 }
 
-void SQ::warn(const char *where, const char *fmt, ...)
+void warn(const char *where, const char *fmt, ...)
 {
     if (LOG::lvl < LOG::loglevel::wrn) {
         return;
@@ -63,7 +65,7 @@ void SQ::warn(const char *where, const char *fmt, ...)
     va_end(args);
 }
 
-void SQ::err(const char *where, const char *fmt, ...)
+void err(const char *where, const char *fmt, ...)
 {
     if (LOG::lvl < LOG::loglevel::err) {
         return;
@@ -72,4 +74,5 @@ void SQ::err(const char *where, const char *fmt, ...)
     va_start(args, fmt);
     __print(args, err_fmt, where, fmt);
     va_end(args);
+}
 }

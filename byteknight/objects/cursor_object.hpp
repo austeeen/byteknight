@@ -43,7 +43,7 @@ protected:
 
 private:
     void __bindingInput(BindingEvent dir);
-    void __changeTile(SQ::dir4 dir);
+    void __changeTile(bt::dir4 dir);
 };
 
 #endif // OBJ_CURSOR_HPP

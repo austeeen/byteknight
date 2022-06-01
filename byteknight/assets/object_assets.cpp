@@ -1,7 +1,7 @@
 #include "object_assets.hpp"
 #include "factory/asset_factory.hpp"
 
-void ObjectAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
+void ObjectAsset::loadFromJson(Json::Value &root, bt::ResourceFactory *rsrc_factory)
 {
     DATA::get(id, root, "id");
     BaseJsonAsset::loadFromJson(root, rsrc_factory);
@@ -12,7 +12,7 @@ void ObjectAsset::loadFromJson(Json::Value &root, ResourceFactory *rsrc_factory)
     if (group_name != "") {
         group_id = Groups::IDMAP.at(group_name);
     } else {
-        SQ::warn("ObjectAsset::loadFromJson", "object %s unknown group %s", this->name, this->group_name);
+        bt::warn("ObjectAsset::loadFromJson", "object %s unknown group %s", this->name, this->group_name);
         group_id = Groups::NO_TEAM;
     }
     DATA::xycoord(start_coord, root, "start_coord", lyr_cols);

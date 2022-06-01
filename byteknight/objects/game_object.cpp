@@ -9,7 +9,7 @@ _alive(true),
 _layer(layer),
 _ast(ast),
 _group_id(ast.group_id),
-_node(new Node(ast.name)),
+_node(new bt::Node(ast.name)),
 _tile(nullptr),
 _sprite(new cSprite(this))
 {}
@@ -17,11 +17,11 @@ GameObject::~GameObject()
 {
     _layer = nullptr;
     _tile = nullptr;
-    SQ::destroy(_node);
+    bt::destroy(_node);
 }
 void GameObject::setUp()
 {
-    SQ::throwForNullPtr(_tile, GETNAME(_tile));
+    bt::throwForNullPtr(_tile, GETNAME(_tile));
     this->rect.setCenter(this->_tile->getCenter());
 }
 bool GameObject::isActive() const

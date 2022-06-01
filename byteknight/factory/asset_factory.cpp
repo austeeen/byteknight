@@ -1,29 +1,31 @@
 #include "asset_factory.hpp"
 #include "assets/scene_assets.hpp"
 
+namespace bt
+{
 AssetFactory::AssetFactory(ResourceFactory *rsrc_factory): rsrc_factory(rsrc_factory)
 {}
 AssetFactory::~AssetFactory()
 {
     for (auto& [n, asset] : loaded_assets) {
-        SQ::destroy(asset);
+        destroy(asset);
     }
     loaded_assets.clear();
     rsrc_factory = nullptr;
 }
 void AssetFactory::build()
 {
-    SQ::msg("AssetFactory::build", "building...");
+    msg("AssetFactory::build", "building...");
     rsrc_factory->getTable(all_groups, "scene_groups");
     if (all_groups.size() == 0) {
-        SQ::warn("AssetFactory::build", "bad scene_groups.json");
+        warn("AssetFactory::build", "bad scene_groups.json");
         return;
     }
 }
 void AssetFactory::loadSceneGroup(const std::string &group_name, std::vector<std::string> &scene_names)
 {
     if (!all_groups.isMember(group_name)) {
-        SQ::warn("AssetFactory::loadSceneGroup", "no scene group found for %s", group_name.c_str());
+        warn("AssetFactory::loadSceneGroup", "no scene group found for %s", group_name.c_str());
         return;
     }
     Json::Value root = all_groups[group_name];
@@ -45,4 +47,5 @@ void AssetFactory::loadSceneGroup(const std::string &group_name, std::vector<std
             scene_names.push_back(scene_name);
         }
     }
+}
 }

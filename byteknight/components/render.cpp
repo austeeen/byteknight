@@ -5,7 +5,7 @@ cRender::cRender(GameObject *obj):
 ObjectComponent(obj), __flicker{0.5f, 0.0f, false}
 {
     __sprite = this->_getSprite();
-    SQ::throwForNullPtr(this->__sprite, "cRender::__sprite");
+    bt::throwForNullPtr(this->__sprite, "cRender::__sprite");
 }
 cRender::~cRender()
 {

@@ -13,9 +13,9 @@ void cMoveSet::create()
     std::vector<std::string> moves = ChessPieces[_ast->move_set];
 
     for (std::string &m_str : moves) {
-        SQ::moveset movedirs;
+        bt::moveset movedirs;
         for (auto chr : m_str) {
-            movedirs.push_back(SQ::C2DIR4.at(chr));
+            movedirs.push_back(bt::C2DIR4.at(chr));
         }
         allmoves.push_back(movedirs);
     }

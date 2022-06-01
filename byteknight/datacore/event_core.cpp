@@ -17,10 +17,10 @@ const std::string SquareEvent::tostr() const {
         ret += " " + (std::string) io::str_bindings[binding.binding];
 
     switch (binding.dir) {
-        case SQ::dir4::up: { ret += " up"; break; }
-        case SQ::dir4::down: { ret += " down"; break; }
-        case SQ::dir4::left: { ret += " left"; break; }
-        case SQ::dir4::right: { ret += " right"; break; }
+        case bt::dir4::up: { ret += " up"; break; }
+        case bt::dir4::down: { ret += " down"; break; }
+        case bt::dir4::left: { ret += " left"; break; }
+        case bt::dir4::right: { ret += " right"; break; }
         default: break;
     }
 

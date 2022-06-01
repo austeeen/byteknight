@@ -1,5 +1,7 @@
 #include "scene_manager.hpp"
 
+namespace bt
+{
 SceneManager::SceneManager(GameContext *game_context) :
 node(new Node("scene_manager")),
 game_context(game_context),
@@ -7,43 +9,43 @@ __scene_context(nullptr),
 window(nullptr),
 active_scene_name("")
 {
-    SQ::throwForNullPtr(this->game_context, GETNAME(this->game_context));
+    throwForNullPtr(this->game_context, GETNAME(this->game_context));
     window = &this->game_context->getWindow();
 }
 SceneManager::~SceneManager()
 {
-    SQ::destroy(node);
+    destroy(node);
 
     for (auto& [name, scene] : this->__scene_table) {
-        SQ::destroy(scene);
+        destroy(scene);
     }
     this->__scene_table.clear();
     paused.clear();
     frozen.clear();
     active_scene_name = "";
 
-    SQ::destroy(__scene_context);
+    destroy(__scene_context);
     window = nullptr;
     game_context = nullptr;
 }
 void SceneManager::build()
 {
-    SQ::throwForNullPtr(game_context, GETNAME(game_context));
+    throwForNullPtr(game_context, GETNAME(game_context));
     game_context->build();
 }
 void SceneManager::startUp()
 {
-    SQ::throwForNullPtr(game_context, GETNAME(game_context));
+    throwForNullPtr(game_context, GETNAME(game_context));
     game_context->setUp();
 }
 void SceneManager::onRun()
 {
-    SQ::throwForNullPtr(game_context, GETNAME(game_context));
-    SQ::throwForNullPtr(window, GETNAME(window));
-    SQ::throwForNullPtr(__scene_context, GETNAME(__scene_context));
+    throwForNullPtr(game_context, GETNAME(game_context));
+    throwForNullPtr(window, GETNAME(window));
+    throwForNullPtr(__scene_context, GETNAME(__scene_context));
     if (active_scene_name == "")
-        throw SQ::BadValueException("SceneManager::onRun", "active_scene_id");
-    SQ::throwForNullPtr(_active(), "active scene");
+        throw BadValueException("SceneManager::onRun", "active_scene_id");
+    throwForNullPtr(_active(), "active scene");
 
     __startScenes();
     dt = fClock.restart().asSeconds();
@@ -66,18 +68,18 @@ void SceneManager::loadSceneGroup(const std::string& group_name)
         if (scn_ast->type == "instance") {
             this->__scene_table[scn_name] = new Instance(__scene_context, static_cast<InstanceAsset*>(scn_ast));
         } else if (scn_ast->type == "menu") {
-            this->__scene_table[scn_name] = new gui::Menu(__scene_context, static_cast<MenuAsset*>(scn_ast));
+            this->__scene_table[scn_name] = new Menu(__scene_context, static_cast<MenuAsset*>(scn_ast));
         } else {
-            SQ::warn("SceneManager::loadSceneGroup", "scene %s has unknown scene type '%s'", scn_name.c_str(), scn_ast->type.c_str());
+            warn("SceneManager::loadSceneGroup", "scene %s has unknown scene type '%s'", scn_name.c_str(), scn_ast->type.c_str());
         }
     }
 
     if(this->__scene_table.empty())
-        SQ::warn("SceneManager::loadSceneGroup", "scene_table is empty");
+        warn("SceneManager::loadSceneGroup", "scene_table is empty");
 }
 void SceneManager::loadScenes()
 {
-    SQ::throwForNullPtr(__scene_context, GETNAME(__scene_context));
+    throwForNullPtr(__scene_context, GETNAME(__scene_context));
     for (auto& [id, scene] : this->__scene_table)
         scene->build();
     for (auto& [id, scene] : this->__scene_table)
@@ -104,7 +106,7 @@ void SceneManager::__resetScenes()
 void SceneManager::pushScene(const std::string& name)
 {
     if (this->__scene_table.count(name) == 0) {
-        SQ::warn("SceneManager::pushScene", "scene name '%s' not in scene table", name.c_str());
+        warn("SceneManager::pushScene", "scene name '%s' not in scene table", name.c_str());
         return;
     }
 
@@ -124,7 +126,7 @@ void SceneManager::popScene()
         _active()->setActive();
         paused.pop_back();
     } else {
-        SQ::debug("SceneManager::popScene", "scene group done");
+        debug("SceneManager::popScene", "scene group done");
     }
 }
 void SceneManager::freezePaused()
@@ -202,4 +204,5 @@ void SceneManager::processFrame()
     window->display();
 
     dt = fClock.restart().asSeconds();
+}
 }

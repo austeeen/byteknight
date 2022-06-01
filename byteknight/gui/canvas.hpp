@@ -3,7 +3,7 @@
 
 #include "widget.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 class Canvas: public EventfulWidget

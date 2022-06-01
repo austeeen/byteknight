@@ -1,6 +1,6 @@
 #include "canvas.hpp"
 
-namespace gui
+namespace bt::gui
 {
 
 Canvas::Canvas(Menu* menu, SceneContext* scene_context, const WidgetAsset& wdgt_ast):

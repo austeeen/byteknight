@@ -1,5 +1,7 @@
 #include "benchmark.hpp"
 
+namespace bt
+{
 Clock Benchmarker::wall_clock;
 Clock Benchmarker::build_clock;
 Clock Benchmarker::run_clock;
@@ -51,4 +53,5 @@ void Clock::stop()
 void Clock::update()
 {
     elapsed += duration;
+}
 }

@@ -5,6 +5,8 @@
 #include "datacore/io_core.hpp"
 #include "utils/bitmask.hpp"
 
+namespace bt
+{
 class InputDevice
 {
 public:
@@ -42,5 +44,5 @@ private:
     int bindings[io::NBINDS];
     std::vector<int> connections;
 };
-
+}
 #endif // INP_IO_H

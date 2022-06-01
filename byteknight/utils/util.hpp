@@ -8,7 +8,7 @@
 #include <cmath>
 #include <memory>
 
-namespace SQ
+namespace bt
 {
     // todo profile to inline
     template<class T> inline void destroy(T*& p) { delete p; p = nullptr; }

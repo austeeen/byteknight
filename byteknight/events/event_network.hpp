@@ -4,6 +4,8 @@
 #include "common.hpp"
 #include "datacore/event_core.hpp"
 
+namespace bt
+{
 class Node;
 
 // idea - break up event node into less functional but faster/lighter/concise sub-types such as
@@ -17,7 +19,6 @@ observing   -- any node may observe any other existing node by its name
 observers -- all events emitted FROM a node are also emitted TO its observer list (observers)
 channels -- a node may own a channel that it can emit events TO its channel list (subscribers)
 */
-
 
 class Network
 {
@@ -53,6 +54,6 @@ private:
     static std::set<std::string> received_events;
     static std::set<std::string> processed_events;
 };
-
+}
 
 #endif // EVT_NODE_HPP

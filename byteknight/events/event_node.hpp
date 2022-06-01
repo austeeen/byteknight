@@ -4,6 +4,8 @@
 #include "common.hpp"
 #include "event_network.hpp"
 
+namespace bt
+{
 class Node
 {
 public:
@@ -46,5 +48,6 @@ private:
     std::vector<std::string> observers;
 
 };
+}
 
 #endif // EVT_NODE_HPP
