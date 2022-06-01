@@ -18,6 +18,7 @@ GameObject::~GameObject()
     _layer = nullptr;
     _tile = nullptr;
     bt::destroy(_node);
+    bt::destroy(_sprite);
 }
 void GameObject::setUp()
 {
