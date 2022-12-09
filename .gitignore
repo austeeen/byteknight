@@ -6,7 +6,7 @@ build/
 res/elthen
 
 # Distribution / packaging
-
+.vscode
 build/
 
 # Prerequisites

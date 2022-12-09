@@ -7,10 +7,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall -ggdb3")
 set(CMAKE_BUILD_TYPE Debug)
 
-find_package(SFML 2.5
-  COMPONENTS system window graphics network audio REQUIRED)
+set(SFML_DIR "C:/msys64/home/pants/SFML/lib/cmake/SFML")
 
-include_directories(${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_NAME})
+
+find_package(SFML 3.0.0
+  COMPONENTS System Window Graphics REQUIRED)
+
+include_directories(
+    ${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_NAME}
+    C:/msys64/home/pants/SFML/include
+)
+
 file(GLOB
     SOURCES ${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_NAME}/*/*.cpp)
 
